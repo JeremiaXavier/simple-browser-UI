@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Search</title>
+  <style>
+   
+   body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #search-container {
+      position: relative;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 50px;
+      padding: 20px;
+      max-width: 800px;
+      text-align: center;
+    }
+    form {
+      display: flex;
+    }
+
+    #search-input {
+      flex: 1;
+      border: none;
+      padding: 5px 10px;
+    }
+
+
+    button {
+      padding: 10px 20px;
+      background-color: #4285f4;
+      border: none;
+      border-radius: 3px;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3367d6;
+    }
+    #search-engine {
+      margin-bottom: 10px;
+    }
+    #search-engine-dropdown {
+      display: none;
+      position: fixed;
+      top: 30px;
+      right: 0;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      padding: 10px;
+      width: 120px;
+      z-index: 1;
+    }
+
+    #search-engine-dropdown.active {
+      display:contents;
+    }
+
+    #search-engine-dropdown select {
+      width: 100%;
+    }
+    #settings-icon {
+      position:fixed;
+      top: 10px;
+      right: 20px;
+      color: #fdf8f8;
+      cursor: pointer;
+      
+    }
+    #search-form {
+      display: flex;
+      align-items: center;
+    }
+
+</style>
+</head>
+<body>
+  <div id="search-container">
+    <div id="settings-icon">&#9881;</div>
+    <form id="search-form" method="GET">
+      <input type="text" name="q" id="search-input" placeholder="Search">
+      <div id="search-engine-dropdown">
+        <select id="search-engine-select" name="engine">
+          <option value="https://www.google.com/search">Google</option>
+          <option value="https://www.bing.com/search">Bing</option>
+          <option value="https://duckduckgo.com/">DuckDuckGo</option>
+        </select>
+      </div>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript code
+
+    const settingsIcon = document.getElementById('settings-icon');
+    const searchForm = document.getElementById('search-form');
+    const searchEngineDropdown = document.getElementById('search-engine-dropdown');
+    const searchEngineSelect = document.getElementById('search-engine-select');
+
+    settingsIcon.addEventListener('click', function() {
+      searchEngineDropdown.classList.toggle('active');
+    });
+
+    searchEngineSelect.addEventListener('change', function() {
+      const selectedEngine = searchEngineSelect.value;
+      searchForm.action = selectedEngine;
+    });
+  </script>
+</body>
+</html>
